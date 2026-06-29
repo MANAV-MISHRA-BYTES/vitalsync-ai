@@ -363,11 +363,13 @@ function sortBy(col) {
   }
 }
 
+const API_BASE = (typeof __API_BASE__ !== 'undefined' ? __API_BASE__ : '')
+
 async function loadRiskScores() {
   loading.value = true
   error.value = null
   try {
-    const res = await fetch('/api/risk-scores')
+    const res = await fetch(`${API_BASE}/api/risk-scores`)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const json = await res.json()
     if (!json.success) throw new Error(json.error)
@@ -390,7 +392,7 @@ async function sendChat() {
   await scrollChat()
 
   try {
-    const res = await fetch('/api/ask-gemini', {
+    const res = await fetch(`${API_BASE}/api/ask-gemini`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),

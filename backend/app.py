@@ -6,7 +6,11 @@ from google import genai
 from data_processor import get_risk_scores
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": [
+    "https://vitalsync-ai-taupe.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]}})
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 _gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
