@@ -6,18 +6,7 @@ from google import genai
 from data_processor import get_risk_scores
 
 app = Flask(__name__)
-import re as _re
-
-def _cors_origin(origin):
-    if not origin:
-        return False
-    if _re.match(r"^https://[\w.-]+\.vercel\.app$", origin):
-        return True
-    if origin in ("http://localhost:3000", "http://127.0.0.1:3000"):
-        return True
-    return False
-
-CORS(app, resources={r"/api/*": {"origins": _cors_origin, "supports_credentials": False}})
+CORS(app)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 _gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
@@ -72,4 +61,3 @@ def ask_gemini():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
-
