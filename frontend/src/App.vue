@@ -363,7 +363,7 @@ function sortBy(col) {
   }
 }
 
-const API_BASE = (typeof __API_BASE__ !== 'undefined' ? __API_BASE__ : '')
+const API_BASE = import.meta.env.VITE_API_BASE_URL || ''
 
 async function loadRiskScores() {
   loading.value = true

@@ -8,6 +8,9 @@ from data_processor import get_risk_scores
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": [
     "https://vitalsync-ai-taupe.vercel.app",
+    "https://vitalsync-ai-git-main-23f3002755s-projects-c13eb142.vercel.app",
+    "https://vitalsync-h0nd6prn6-23f3002755s-projects-c13eb142.vercel.app",
+    "https://vitalsync-ai-pvre.onrender.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]}})
